@@ -68,12 +68,14 @@ def evaluate_models(striker_path: str, goalkeeper_path: str, num_episodes: int =
         rewards.append(reward)
         steps.append(step)
         
-        # Update results
-        if 'goal' in info and info['goal']:
-            results['goals'] += 1
-        elif 'save' in info and info['save']:
-            results['saves'] += 1
+        # Update results based on goal_scored information
+        if 'goal_scored' in info:
+            if info['goal_scored']:
+                results['goals'] += 1
+            else:
+                results['saves'] += 1
         else:
+            # Count as a miss only if goal information is unavailable
             results['misses'] += 1
         
         logger.info(f"Episode {i+1}/{num_episodes} - Reward: {reward:.2f}, Steps: {step}")

@@ -1,0 +1,41 @@
+# Core
+numpy>=1.26.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+
+# Reinforcement Learning
+gymnasium>=0.29.0  # Newer version of gym
+stable-baselines3>=2.0.0  # Updated to work with Python 3.13
+torch>=2.0.0  # Using the latest stable version
+tensorboard>=2.13.0
+
+# GenAI
+openai>=1.0.0  # Updated to latest major version
+transformers>=4.30.0  # Updated to latest stable
+
+# Workflow
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development
+black>=23.0.0
+flake8>=6.0.0
+isort>=5.12.0
+
+# Visualization
+streamlit>=1.24.0
+seaborn>=0.12.2
+
+# Utilities
+tqdm>=4.65.0
+
+# Note: Airflow is commented out as it might cause compatibility issues
+# apache-airflow>=2.7.0,<3.0.0
+
+# Note: The following packages are excluded as they require C++ build tools
+# google-re2
+# apache-airflow-providers-google

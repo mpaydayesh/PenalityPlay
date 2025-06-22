@@ -1,0 +1,66 @@
+# Reward configuration for the penalty shootout environment
+
+# Striker rewards
+striker:
+  # Base rewards
+  goal_scored: 1.0
+  shot_on_target: 0.2
+  shot_off_target: -0.1
+  shot_saved: -0.3
+  
+  # Shot quality modifiers
+  high_quality_shot: 0.3      # For well-placed shots
+  perfect_placement: 0.5      # For shots in corners
+  
+  # Penalties
+  weak_shot: -0.2             # For shots with insufficient power
+  predictable_shot: -0.1       # For shots that are too predictable
+  
+  # Time-based rewards (encourage faster decisions)
+  quick_decision: 0.05
+  
+  # Style points (optional)
+  stylish_shot: 0.1
+  
+  # End of match
+  match_win: 2.0
+  match_loss: -1.0
+  match_draw: 0.5
+
+# Goalkeeper rewards
+goalkeeper:
+  # Base rewards
+  save: 1.0
+  goal_conceded: -0.5
+  
+  # Save quality modifiers
+  diving_save: 0.3
+  penalty_save: 0.5
+  
+  # Positioning
+  good_positioning: 0.2
+  poor_positioning: -0.2
+  
+  # Timing
+  early_dive: -0.1
+  perfect_timing: 0.3
+  
+  # End of match
+  match_win: 2.0
+  match_loss: -1.0
+  match_draw: 0.5
+
+# Common parameters
+common:
+  # Discount factor for future rewards
+  gamma: 0.99
+  
+  # Reward shaping
+  use_shaped_rewards: true
+  
+  # Reward scaling
+  reward_scale: 1.0
+  
+  # Clip rewards to prevent large updates
+  clip_rewards: true
+  clip_range: [-1.0, 1.0]

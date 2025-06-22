@@ -1,0 +1,44 @@
+# GenAI Prompt Templates
+
+# Match scenario generation
+match_scenario: |
+  Generate a detailed football penalty shootout scenario based on the following context:
+  {context}
+  
+  The scenario should include:
+  - Stadium atmosphere and crowd description
+  - Time of day and weather conditions
+  - Brief backstory or context for the match
+  - Any special conditions or events
+  
+  Format the response as a JSON object with the following structure:
+  {
+    "stadium": "name of the stadium",
+    "crowd_size": "small/medium/large",
+    "time_of_day": "morning/afternoon/evening/night",
+    "weather": {
+      "condition": "sunny/cloudy/rainy/etc.",
+      "wind_speed": 0-40,
+      "temperature": 5-35
+    },
+    "narrative": "A brief narrative description of the scenario"
+  }
+
+# Match commentary generation
+commentary: |
+  Generate a lively and engaging football commentary for the following penalty kick event:
+  {event}
+  
+  The commentary should be 1-2 sentences long and capture the excitement of the moment.
+  Include details about the shot, the goalkeeper's reaction, and the crowd's response.
+
+# Post-match summary generation
+post_match_summary: |
+  Write a brief post-match summary for a penalty shootout with the following result:
+  {result}
+  
+  The summary should be 2-3 paragraphs and include:
+  - Key moments from the shootout
+  - Standout performances
+  - The final outcome and its significance
+  - A memorable closing line

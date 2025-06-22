@@ -1,0 +1,119 @@
+# Agent hyperparameters for the penalty shootout environment
+
+# Shared parameters between striker and goalkeeper
+shared:
+  # Policy network architecture
+  policy_network:
+    net_arch:  # Separate policy and value networks
+      - pi: [64, 64]  # Policy network layers
+        vf: [64, 64]  # Value function layers
+    activation_fn: "tanh"  # tanh or relu
+    
+  # Training parameters
+  learning_rate: 3e-4
+  n_steps: 2048  # Number of steps to run for each environment per update
+  batch_size: 64
+  n_epochs: 10  # Number of epochs when optimizing the surrogate loss
+  gamma: 0.99  # Discount factor
+  gae_lambda: 0.95  # Factor for trade-off of bias vs variance for Generalized Advantage Estimator
+  clip_range: 0.2  # Clipping parameter for PPO
+  ent_coef: 0.0  # Entropy coefficient for exploration
+  vf_coef: 0.5  # Value function coefficient for the loss calculation
+  max_grad_norm: 0.5  # Maximum norm for the gradient clipping
+  
+  # Replay buffer
+  buffer_size: 1000000
+  learning_starts: 10000
+  
+  # Exploration
+  exploration_fraction: 0.1
+  exploration_final_eps: 0.02
+  
+  # Training
+  train_freq: 1
+  gradient_steps: 1
+  target_update_interval: 100
+  
+  # Logging
+  tensorboard_log: "./logs/tensorboard/"
+  verbose: 1
+
+# Striker-specific parameters
+striker:
+  # Slight modifications from shared parameters
+  learning_rate: 3e-4
+  gamma: 0.99
+  
+  # Network architecture can be different for striker
+  policy_network:
+    net_arch:  # Slightly larger network
+      - pi: [128, 128]  # Policy network layers
+        vf: [128, 128]  # Value function layers
+    activation_fn: "relu"
+  
+  # Exploration
+  exploration_final_eps: 0.01  # More exploration for striker
+  
+  # Training
+  batch_size: 128
+  n_steps: 4096
+
+# Goalkeeper-specific parameters
+goalkeeper:
+  # Slight modifications from shared parameters
+  learning_rate: 1e-4  # Lower learning rate for more stable learning
+  gamma: 0.99
+  
+  # Network architecture can be different for goalkeeper
+  policy_network:
+    net_arch:
+      - pi: [64, 64]  # Policy network layers
+        vf: [64, 64]  # Value function layers
+    activation_fn: "tanh"
+  
+  # Exploration
+  exploration_final_eps: 0.02
+  
+  # Training
+  batch_size: 64
+  n_steps: 2048
+
+# Evaluation parameters
+evaluation:
+  eval_freq: 10000  # Evaluate every N steps
+  n_eval_episodes: 10  # Number of episodes to evaluate
+  deterministic: True  # Use deterministic actions for evaluation
+  render: False  # Render during evaluation
+  
+  # Metrics to track
+  metrics:
+    - mean_reward
+    - std_reward
+    - episodes_this_iter
+    - time_elapsed
+    - total_timesteps
+    - success_rate
+    - goals_per_shot
+    - save_percentage
+
+# Environment specific
+env:
+  max_steps: 1000  # Maximum steps per episode
+  frame_skip: 1  # Number of frames to skip (1 = no skip)
+  frame_stack: 1  # Number of frames to stack
+  
+  # Observation space settings
+  use_visual_observation: False  # Whether to use visual observations
+  grayscale_observation: True  # Whether to convert visual observations to grayscale
+  
+  # Action space settings
+  continuous_actions: True  # Whether to use continuous actions
+  action_noise: 0.1  # Add noise to actions for exploration
+  
+  # Reward shaping
+  use_shaped_rewards: True  # Whether to use shaped rewards
+  reward_scale: 1.0  # Scale factor for rewards
+  
+  # Termination conditions
+  early_stop: True  # Whether to stop early if the agent is stuck
+  max_no_improvement: 10  # Number of evaluations with no improvement before stopping

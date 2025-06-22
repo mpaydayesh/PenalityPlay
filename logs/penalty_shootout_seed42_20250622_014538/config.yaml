@@ -1,0 +1,88 @@
+env:
+  action_noise: 0.1
+  continuous_actions: true
+  early_stop: true
+  frame_skip: 1
+  frame_stack: 1
+  grayscale_observation: true
+  max_no_improvement: 10
+  max_steps: 1000
+  reward_scale: 1.0
+  use_shaped_rewards: true
+  use_visual_observation: false
+evaluation:
+  deterministic: true
+  eval_freq: 10000
+  metrics:
+  - mean_reward
+  - std_reward
+  - episodes_this_iter
+  - time_elapsed
+  - total_timesteps
+  - success_rate
+  - goals_per_shot
+  - save_percentage
+  n_eval_episodes: 10
+  render: false
+experiment_name: penalty_shootout_seed42
+goalkeeper:
+  batch_size: 64
+  exploration_final_eps: 0.02
+  gamma: 0.99
+  learning_rate: 1e-4
+  n_steps: 2048
+  policy_network:
+    activation_fn: tanh
+    net_arch:
+    - pi:
+      - 64
+      - 64
+      vf:
+      - 64
+      - 64
+seed: 42
+shared:
+  batch_size: 64
+  buffer_size: 1000000
+  clip_range: 0.2
+  ent_coef: 0.0
+  exploration_final_eps: 0.02
+  exploration_fraction: 0.1
+  gae_lambda: 0.95
+  gamma: 0.99
+  gradient_steps: 1
+  learning_rate: 3e-4
+  learning_starts: 10000
+  max_grad_norm: 0.5
+  n_epochs: 10
+  n_steps: 2048
+  policy_network:
+    activation_fn: tanh
+    net_arch:
+    - pi:
+      - 64
+      - 64
+      vf:
+      - 64
+      - 64
+  target_update_interval: 100
+  tensorboard_log: ./logs/tensorboard/
+  train_freq: 1
+  verbose: 1
+  vf_coef: 0.5
+striker:
+  batch_size: 128
+  exploration_final_eps: 0.01
+  gamma: 0.99
+  learning_rate: 3e-4
+  n_steps: 4096
+  policy_network:
+    activation_fn: relu
+    net_arch:
+    - pi:
+      - 128
+      - 128
+      vf:
+      - 128
+      - 128
+total_timesteps: 100

@@ -58,11 +58,12 @@ def plot_episode_rewards(rewards: Dict[str, List[float]],
 def plot_evaluation_results(results: Dict[str, float], 
                           output_path: Optional[str] = None) -> None:
     """Plot evaluation results.
-    
+
     Args:
         results: Dictionary of evaluation metrics
         output_path: Optional path to save the plot
-    """n    plt.figure(figsize=(10, 6))
+    """
+    plt.figure(figsize=(10, 6))
     
     # Filter and sort metrics for plotting
     metrics = {k: v for k, v in results.items() if not k.startswith('num_')}

@@ -174,9 +174,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Stable Baselines3](https://github.com/DLR-RM/stable-baselines3) for the RL algorithms
 - [Gymnasium](https://gymnasium.farama.org/) for the environment interface
 - [PyTorch](https://pytorch.org/) for deep learning
-- Run evaluation: `python -m src.evaluate`
+- Run evaluation: `python evaluate.py`
 - Start web interface: `streamlit run streamlit_app/app.py`
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
